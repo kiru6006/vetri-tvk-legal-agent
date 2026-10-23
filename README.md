@@ -164,7 +164,23 @@ All visual interfaces are captured and maintained in the repository under [`docs
 
 ---
 
-## 🚀 Quickstart Guide
+## 🌐 Live Online Demo & Instant Sharing
+
+### 1. Share via Live GitHub Pages (Zero-Install Online Review)
+Anyone on desktop or mobile can instantly test and review the live platform without installing Node or running local servers:
+👉 **[https://kiru6006.github.io/vetri-tvk-legal-agent/](https://kiru6006.github.io/vetri-tvk-legal-agent/)**
+
+*(To enable GitHub Pages in your repo: go to **Settings > Pages > Build and deployment > Source: GitHub Actions**)*.
+
+### 2. Share as Standalone Offline Folder (Double-Click `index.html`)
+The repository includes a ready-to-run, standalone distribution under the [`demo/`](demo/) folder:
+1. Download or ZIP the [`demo/`](demo/) folder and share with friends or stakeholders.
+2. Unzip and simply double-click [`demo/index.html`](demo/index.html) in Chrome, Edge, Safari, or Firefox.
+3. Every page, interactive filter, case popup modal, and Vetri Copilot interaction will work **100% offline directly from the file system** via HashRouter with zero local server required!
+
+---
+
+## 🚀 Local Developer Setup
 
 ### Prerequisites
 - Node.js (v18 or higher recommended)
