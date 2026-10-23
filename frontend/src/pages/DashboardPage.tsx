@@ -303,29 +303,147 @@ export const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Court Forum Breakdown */}
-          <div className="bg-white rounded-lg border border-slate-200 shadow-xs p-4">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-100 mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-tn-navy-950">
-                Forum Distribution
-              </span>
-              <span className="text-[10px] text-slate-500 font-mono">3,280 Total</span>
+          {/* Court Forum Distribution - Sovereign Executive Cockpit */}
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-sm p-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3.5">
+              <div className="flex items-center space-x-2">
+                <div className="p-1.5 rounded-lg bg-tn-navy-950 text-tn-gold-400">
+                  <Scale className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-tn-navy-950">
+                    Forum Distribution
+                  </h3>
+                  <p className="text-[10px] text-slate-500 font-medium">
+                    Statewide Jurisdiction Spread
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <span className="text-sm font-black text-tn-navy-950 font-mono block">
+                  3,280
+                </span>
+                <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
+                  Total Active
+                </span>
+              </div>
             </div>
-            <div className="space-y-2.5">
-              {courtBreakdown.map((c: any, idx: number) => (
-                <div key={idx} className="space-y-1">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-slate-700 truncate font-medium">{c.name}</span>
-                    <span className="font-bold text-slate-900 font-mono">{c.count}</span>
+
+            <div className="space-y-3">
+              {[
+                {
+                  name: 'Madras High Court (Principal)',
+                  shortName: 'High Court (Chennai)',
+                  count: 1420,
+                  percent: 43.3,
+                  bench: 'Principal Seat • Chennai',
+                  color: 'from-blue-600 to-indigo-700',
+                  bgBar: 'bg-blue-600',
+                  badgeBg: 'bg-blue-50 text-blue-900 border-blue-200',
+                  filterCourt: 'Madras High Court (Principal Bench, Chennai)',
+                  courtLevel: 'HIGH_COURT'
+                },
+                {
+                  name: 'Madras High Court (Madurai Bench)',
+                  shortName: 'Madurai Bench',
+                  count: 980,
+                  percent: 29.9,
+                  bench: '14 Southern Districts Jurisdiction',
+                  color: 'from-indigo-600 to-purple-700',
+                  bgBar: 'bg-indigo-600',
+                  badgeBg: 'bg-indigo-50 text-indigo-900 border-indigo-200',
+                  filterCourt: 'Madras High Court (Madurai Bench)',
+                  courtLevel: 'HIGH_COURT'
+                },
+                {
+                  name: 'Supreme Court of India',
+                  shortName: 'Supreme Court (Apex)',
+                  count: 185,
+                  percent: 5.6,
+                  bench: 'SLP & Constitutional Appeals • New Delhi',
+                  color: 'from-rose-600 to-amber-600',
+                  bgBar: 'bg-rose-600',
+                  badgeBg: 'bg-rose-50 text-rose-900 border-rose-200',
+                  filterCourt: 'Supreme Court of India',
+                  courtLevel: 'SUPREME_COURT'
+                },
+                {
+                  name: 'District & Sessions Courts',
+                  shortName: 'District & Sessions',
+                  count: 390,
+                  percent: 11.9,
+                  bench: '38 District Trial Jurisdictions',
+                  color: 'from-amber-500 to-orange-600',
+                  bgBar: 'bg-amber-600',
+                  badgeBg: 'bg-amber-50 text-amber-900 border-amber-200',
+                  filterCourt: 'District & Sessions Court',
+                  courtLevel: 'DISTRICT_SESSIONS'
+                },
+                {
+                  name: 'Tribunals (NGT/CAT/Appellate)',
+                  shortName: 'Tribunals & Commissions',
+                  count: 305,
+                  percent: 9.3,
+                  bench: 'NGT Southern Zone • CAT • Appellate',
+                  color: 'from-emerald-600 to-teal-700',
+                  bgBar: 'bg-emerald-600',
+                  badgeBg: 'bg-emerald-50 text-emerald-900 border-emerald-200',
+                  filterCourt: 'National Green Tribunal (Southern Zone)',
+                  courtLevel: 'TRIBUNALS_COMMISSIONS'
+                }
+              ].map((c, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => navigate(`/cases?courtLevel=${c.courtLevel}`)}
+                  className="p-2 rounded-xl hover:bg-slate-50 border border-slate-100 hover:border-slate-200 cursor-pointer transition-all duration-150 group"
+                >
+                  <div className="flex items-center justify-between text-xs mb-1">
+                    <div className="flex items-center space-x-1.5 min-w-0 pr-2">
+                      <span className={`w-2 h-2 rounded-full shrink-0 ${c.bgBar}`}></span>
+                      <span className="font-bold text-slate-800 group-hover:text-tn-navy-950 truncate text-[11px]">
+                        {c.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-1.5 shrink-0">
+                      <span className="font-black text-slate-900 font-mono text-xs">
+                        {c.count.toLocaleString()}
+                      </span>
+                      <span className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded border ${c.badgeBg}`}>
+                        {c.percent.toFixed(1)}%
+                      </span>
+                      <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-slate-700 group-hover:translate-x-0.5 transition-all" />
+                    </div>
                   </div>
-                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                    <div 
-                      className="bg-tn-navy-800 h-full rounded-full" 
+
+                  <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden p-0.5 shadow-inner">
+                    <div
+                      className={`h-full rounded-full bg-gradient-to-r ${c.color} transition-all duration-500`}
                       style={{ width: `${c.percent}%` }}
                     ></div>
                   </div>
+
+                  <div className="flex items-center justify-between mt-1 text-[10px] text-slate-400 font-mono">
+                    <span className="truncate">{c.bench}</span>
+                    <span className="text-slate-500 font-medium group-hover:text-tn-navy-900 group-hover:font-semibold">View Cases →</span>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-3.5 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <button
+                onClick={() => navigate('/court-types')}
+                className="text-tn-navy-900 font-bold hover:text-blue-800 flex items-center gap-1 text-[11px] transition-colors"
+              >
+                <span>Full Judicial Hierarchy & Benches</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={() => navigate('/workload')}
+                className="text-slate-500 hover:text-slate-800 text-[11px] font-medium"
+              >
+                Workload Matrix →
+              </button>
             </div>
           </div>
         </div>
