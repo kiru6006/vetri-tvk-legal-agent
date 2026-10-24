@@ -4,8 +4,16 @@
 
 @layer base {
   body {
-    @apply font-sans antialiased text-tn-slate-900 bg-[#f8fafc];
+    @apply font-sans antialiased text-tn-slate-900 bg-slate-100;
+    overflow-x: hidden;
   }
+}
+
+/* Crisp White-Bordered Card Aesthetic */
+.bg-white, [class*="rounded-xl border"], [class*="rounded-2xl border"] {
+  border-width: 1.5px !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.7);
 }
 
 /* Custom scrollbars for dense administrative tables */
